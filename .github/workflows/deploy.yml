@@ -2,7 +2,7 @@ name: Deploy Static Site to GitHub Pages
 
 on:
   push:
-    branches: [main]  # Trigger only on main branch pushes
+    branches: [main]
 
 permissions:
   contents: read
@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   deploy-static-site:
-    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +23,11 @@ jobs:
       - name: Upload static files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .  # Use current directory (no quotes)
+          path: .
 
       - name: Show Deployment Environment
         run: echo "Deploying to environment: ${{ secrets.DEPLOY_ENV }}"
 
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
 
